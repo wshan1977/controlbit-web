@@ -33,6 +33,12 @@
 .form-card input:focus, .form-card textarea:focus { outline: none; border-color: var(--blue); }
 .form-card textarea { min-height: 140px; resize: vertical; }
 .form-note { font-size: 13px; color: var(--text-light); margin-top: 14px; }
+/* 모바일 게시판 최적화 */
+@media (max-width: 560px) {
+  .board-table th:nth-child(3), .board-table td:nth-child(3) { display: none; }
+  .board-table th, .board-table td { padding: 10px 8px; font-size: 13.5px; }
+  .badge { white-space: nowrap; font-size: 11px; padding: 2px 8px; }
+}
 </style>
 </head>
 <body>
