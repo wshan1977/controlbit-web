@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Inquiry Board | CONTROLBIT</title>
+<meta name="description" content="CONTROLBIT development inquiry board — leave your project requirements and we will reply by email after a technical review." />
+<link rel="icon" href="../assets/e7633d_7cc44a5e064d4cef8a2fc5eae155e311.png" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="stylesheet" href="../assets/style.css" />
+<style>
+.board-table { width: 100%; border-collapse: collapse; font-size: 15px; background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.board-table th { background: var(--bg-soft); color: var(--navy); font-weight: 700; padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+.board-table td { padding: 14px 16px; border-bottom: 1px solid var(--line); color: var(--text); }
+.board-table tr:last-child td { border-bottom: none; }
+.board-table tr.post-row { cursor: pointer; transition: background 0.15s; }
+.board-table tr.post-row:hover { background: var(--sky); }
+.badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.badge.done { background: #dcfce7; color: #15803d; }
+.badge.wait { background: #fef9c3; color: #a16207; }
+.lock { color: var(--text-light); }
+.post-content { display: none; background: var(--bg-soft); }
+.post-content td { padding: 20px 24px; font-size: 14.5px; line-height: 1.8; }
+.post-content .answer { margin-top: 14px; padding: 14px 18px; background: #fff; border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0; }
+.admin-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px; }
+.admin-note { font-size: 13.5px; color: var(--text-light); }
+.form-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 36px; }
+.form-card label { display: block; font-size: 14.5px; font-weight: 600; color: var(--navy); margin: 18px 0 6px; }
+.form-card input, .form-card textarea, .form-card select {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px;
+  font-family: inherit; font-size: 15px; color: var(--text); background: #fff;
+}
+.form-card input:focus, .form-card textarea:focus { outline: none; border-color: var(--blue); }
+.form-card textarea { min-height: 140px; resize: vertical; }
+.form-note { font-size: 13px; color: var(--text-light); margin-top: 14px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="./">
+      <img src="../assets/e7633d_7cc44a5e064d4cef8a2fc5eae155e311.png" alt="CONTROLBIT logo" />
+      CONTROLBIT
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="./#services">Services</a>
+      <a href="./#solutions">Solutions</a>
+      <a href="./#products">Products</a>
+      <a href="./#portfolio">Portfolio</a>
+      <a href="board.html">Inquiry Board</a>
+      <a href="https://blog.naver.com/controlbit_xtiger" target="_blank" rel="noopener">Blog</a>
+      <a class="lang" href="../board.html">KO</a>
+      <a class="nav-cta" href="../contact.html">Contact Us</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="./">Home</a> › Inquiry Board</div>
+    <h1>Development Inquiry Board</h1>
+    <p class="sub">Leave your project requirements and we will reply by email after a technical review. All inquiries are private and visible only to the administrator.</p>
+  </div>
+</div>
+
+<!-- Inquiry list -->
+<section style="padding-bottom: 48px;">
+  <div class="container">
+    <div class="admin-bar">
+      <div class="admin-note">🔒 All inquiries are registered as private posts. Only the author and administrator can view the contents.</div>
+      <button class="btn btn-ghost" id="adminBtn">Admin Login</button>
+    </div>
+    <table class="board-table">
+      <thead>
+        <tr><th style="width:60px;">No.</th><th>Title</th><th style="width:110px;">Author</th><th style="width:110px;">Date</th><th style="width:110px;">Status</th></tr>
+      </thead>
+      <tbody>
+        <tr class="post-row" data-idx="0">
+          <td>4</td><td><span class="lock">🔒</span> UWB RTLS deployment for warehouse logistics</td><td>J***</td><td>2026-07-05</td><td><span class="badge done">Answered</span></td>
+        </tr>
+        <tr class="post-content" data-content="0">
+          <td colspan="5">
+            <b>Q.</b> We are evaluating CB-UWB Anchor for forklift tracking in a 15,000㎡ warehouse. Could you share anchor density guidelines, budget range, and typical deployment timeline?<br />
+            <div class="answer"><b>A. CONTROLBIT</b> — Thank you for your interest. Anchor density depends on rack layout and ceiling height. If you send us a floor plan, we will provide a placement design and quotation. Typical deployment for this scale is 4–6 weeks.</div>
+          </td>
+        </tr>
+        <tr class="post-row" data-idx="1">
+          <td>3</td><td><span class="lock">🔒</span> Custom firmware for Moreco3 AHRS (bulk order)</td><td>M***</td><td>2026-06-18</td><td><span class="badge done">Answered</span></td>
+        </tr>
+        <tr class="post-content" data-content="1">
+          <td colspan="5">
+            <b>Q.</b> We need 200 units of Moreco3 Serial for robotic arm control, with a custom output format at 400Hz. Is customization available, and what is the lead time?<br />
+            <div class="answer"><b>A. CONTROLBIT</b> — Yes, custom output format and sampling rate are supported. We have sent the volume pricing and lead time to your email.</div>
+          </td>
+        </tr>
+        <tr class="post-row" data-idx="2">
+          <td>2</td><td><span class="lock">🔒</span> BLE AoA indoor positioning accuracy question</td><td>S***</td><td>2026-05-27</td><td><span class="badge done">Answered</span></td>
+        </tr>
+        <tr class="post-content" data-content="2">
+          <td colspan="5">
+            <b>Q.</b> What real-world positioning accuracy can we expect from the LocationX locator in a retail environment with 4m ceilings?<br />
+            <div class="answer"><b>A. CONTROLBIT</b> — Sub-meter accuracy is achievable in typical environments with 3–6m ceilings. Metal structures and interference sources may affect performance, so we recommend a small PoC first.</div>
+          </td>
+        </tr>
+        <tr class="post-row" data-idx="3">
+          <td>1</td><td><span class="lock">🔒</span> Wearable device prototype with wireless charging</td><td>A***</td><td>2026-05-02</td><td><span class="badge wait">Received</span></td>
+        </tr>
+        <tr class="post-content" data-content="3">
+          <td colspan="5">
+            <b>Q.</b> We are planning a pet activity tracker with IMU motion recognition, BLE connectivity, and wireless charging in a compact form factor. Can you handle the full prototype development?
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Write inquiry -->
+<section style="padding-top: 0;" id="write">
+  <div class="container">
+    <div class="sec-label">Write</div>
+    <h2 class="sec-title" style="font-size: 28px;">Submit an Inquiry</h2>
+    <p class="sec-desc">Your inquiry is not published on the board — it is sent privately to the administrator. We will reply by email.</p>
+    <div class="form-card">
+      <form action="https://formsubmit.co/info@control-bit.com" method="POST">
+        <input type="hidden" name="_subject" value="[Website Inquiry - EN] New inquiry received" />
+        <input type="hidden" name="_next" value="https://www.control-bit.com/en/board.html?sent=1" />
+        <input type="hidden" name="_captcha" value="true" />
+        <label>Name / Company *</label>
+        <input type="text" name="name" required placeholder="John Doe / Acme Inc." />
+        <label>Reply Email *</label>
+        <input type="email" name="email" required placeholder="you@example.com" />
+        <label>Phone</label>
+        <input type="tel" name="phone" placeholder="+1-000-000-0000" />
+        <label>Category</label>
+        <select name="category">
+          <option>BLE / Indoor Positioning (AoA·AoD)</option>
+          <option>UWB / RTLS</option>
+          <option>Motion Recognition / IMU</option>
+          <option>Wireless Charging</option>
+          <option>Wearable Product Development</option>
+          <option>Product Purchase / Quotation</option>
+          <option>Other</option>
+        </select>
+        <label>Message *</label>
+        <textarea name="message" required placeholder="Please describe your product's purpose, required features, expected quantity and timeline."></textarea>
+        <div style="margin-top: 24px;">
+          <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+        </div>
+        <p class="form-note">* Your inquiry will be sent privately to the administrator (info@control-bit.com).</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-info">
+      <b>CONTROLBIT</b><br />
+      #924, 229 Yangji-ro, Bucheon-si, Gyeonggi-do, South Korea (Golden IT Tower) · Business Reg. No.: 741-29-00500<br />
+      Tel: +82-32-343-4658 · +82-10-9117-4658 · Email: <a href="mailto:info@control-bit.com" style="color: var(--blue);">info@control-bit.com</a>
+    </div>
+    <div class="copyright">© 2018 ControlBIT. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+// ===== Admin access lock =====
+// SHA-256 hash of the admin password (default: cb2026!)
+const ADMIN_HASH = 'bb1c1057d2c122addc0e0a13a34ef21850a5901eb16e31adbfc68e5b857c4126';
+let adminMode = false;
+
+async function sha256(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+document.getElementById('adminBtn').addEventListener('click', async function () {
+  if (adminMode) { adminMode = false; document.querySelectorAll('.post-content').forEach(el => { el.style.display = 'none'; }); this.textContent = 'Admin Login'; return; }
+  const pw = window.prompt('Enter the administrator password');
+  if (pw === null) return;
+  if ((await sha256(pw)) === ADMIN_HASH) {
+    adminMode = true;
+    this.textContent = 'Admin Logout';
+    alert('Admin mode enabled. Click a post to view its contents.');
+  } else {
+    alert('Incorrect password.');
+  }
+});
+
+document.querySelectorAll('.post-row').forEach(row => {
+  row.addEventListener('click', function () {
+    if (!adminMode) { alert('🔒 This is a private post. Only the author and administrator can view it.'); return; }
+    const content = document.querySelector('.post-content[data-content="' + this.dataset.idx + '"]');
+    content.style.display = content.style.display === 'table-row' ? 'none' : 'table-row';
+  });
+});
+
+if (new URLSearchParams(location.search).get('sent') === '1') {
+  alert('Your inquiry has been received. We will reply by email after review. Thank you.');
+  history.replaceState(null, '', 'board.html');
+}
+</script>
+</body>
+</html>
