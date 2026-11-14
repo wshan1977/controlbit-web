@@ -17,7 +17,7 @@
     'background:#fff;border:1px solid #e2e8f0;border-radius:16px;box-shadow:0 18px 50px rgba(10,37,64,.22);' +
     'overflow:hidden;font-family:inherit;transform:translateY(24px);opacity:0;transition:all .45s cubic-bezier(.2,.8,.2,1)}' +
     '.lx-teaser.on{transform:none;opacity:1}' +
-    '.lx-teaser img{display:block;width:100%;height:150px;object-fit:cover;object-position:30% 40%;background:#f3f6fa}' +
+    '.lx-teaser img{display:block;width:100%;height:150px;object-fit:cover;object-position:center;background:#0e1a2b}' +
     '.lx-teaser .lx-b{padding:14px 16px 16px}' +
     '.lx-teaser .lx-live{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:800;letter-spacing:.06em;' +
     'color:#16a34a;background:#ecfdf3;border-radius:999px;padding:3px 9px}' +
@@ -40,13 +40,13 @@
   document.head.appendChild(st);
 
   var T = en ? {
-    live: 'LIVE', title: 'Watch a real LocationX system running now',
-    body: 'Tag positions (AOD) and direction angles (AOA) computed by locators installed on site — right in your browser.',
-    go: 'Open live demo', later: 'Later', alt: 'LocationX live positioning'
+    live: 'LIVE', title: 'Indoor positioning — see it running live',
+    body: 'LocationX finds people and assets indoors in real time: ceiling locators track small tags. Watch our real installation right in your browser.',
+    go: 'Open live demo', later: 'Later', alt: 'LocationX indoor positioning live demo'
   } : {
-    live: 'LIVE', title: '지금 실제 장비가 동작 중입니다',
-    body: '현장에 설치된 로케이터가 계산한 태그 위치(AOD)와 방향각(AOA)을 브라우저에서 바로 확인해 보세요.',
-    go: '실시간 데모 보기', later: '나중에', alt: 'LocationX 실시간 위치측위 화면'
+    live: 'LIVE', title: '실내 위치추적, 실제로 동작 중입니다',
+    body: '천장의 로케이터가 사람·물건에 붙인 태그 위치를 실시간으로 찾아냅니다. 컨트롤비트에 설치된 실제 장비 화면을 지금 확인해 보세요.',
+    go: '실시간 데모 보기', later: '나중에', alt: 'LocationX 실내 위치추적 실시간 데모'
   };
 
   function close() {
@@ -61,7 +61,7 @@
   box.setAttribute('aria-label', T.title);
   box.innerHTML =
     '<button class="lx-close" aria-label="close">×</button>' +
-    '<img src="' + base + 'locationx_tool_aod.png" alt="' + T.alt + '">' +
+    '<img src="' + base + 'live-teaser-thumb.jpg" alt="' + T.alt + '">' +
     '<div class="lx-b"><span class="lx-live"><span class="lx-dot"></span>' + T.live + '</span>' +
     '<h4>' + T.title + '</h4><p>' + T.body + '</p>' +
     '<div class="lx-row"><a class="lx-go" href="' + DEMO_URL + '" target="_blank" rel="noopener">' + T.go + ' →</a>' +
