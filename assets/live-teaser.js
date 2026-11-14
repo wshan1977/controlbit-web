@@ -22,6 +22,7 @@
     '.lx-teaser .lx-b{padding:14px 16px 12px}' +
     '.lx-teaser .lx-live{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:800;letter-spacing:.06em;' +
     'color:#16a34a;background:#ecfdf3;border-radius:999px;padding:3px 9px}' +
+    '.lx-teaser .lx-viewers{margin-left:8px;font-size:12.5px;font-weight:700;color:#0a2540}' +
     '.lx-teaser h4{margin:8px 0 4px;font-size:16px;color:#0a2540;line-height:1.35}' +
     '.lx-teaser p{margin:0;font-size:13px;color:#64748b;line-height:1.55}' +
     '.lx-teaser .lx-row{display:flex;gap:8px;margin-top:12px}' +
@@ -46,11 +47,13 @@
   var T = en ? {
     live: 'LIVE', title: 'Indoor positioning — see it running live',
     body: 'LocationX finds people and assets indoors in real time: ceiling locators track small tags. Watch our real installation right in your browser.',
-    go: 'Open live AOD/AOA demo', close: 'Close', today: "Don't show again today", alt: 'LocationX indoor positioning live demo'
+    go: 'Open live AOD/AOA demo', close: 'Close', today: "Don't show again today", alt: 'LocationX indoor positioning live demo',
+    viewers: function (n) { return '👀 ' + n + (n > 1 ? ' people' : ' person') + ' watching now'; }
   } : {
     live: 'LIVE', title: '실내 위치추적, 실제로 동작 중입니다',
     body: '천장의 로케이터가 사람·물건에 붙인 태그 위치를 실시간으로 찾아냅니다. 컨트롤비트에 설치된 실제 장비 화면을 지금 확인해 보세요.',
-    go: '실시간 AOD/AOA 데모 보기', close: '닫기', today: '오늘 하루 보지 않기', alt: 'LocationX 실내 위치추적 실시간 데모'
+    go: '실시간 AOD/AOA 데모 보기', close: '닫기', today: '오늘 하루 보지 않기', alt: 'LocationX 실내 위치추적 실시간 데모',
+    viewers: function (n) { return '👀 지금 ' + n + '명이 데모를 보는 중'; }
   };
 
   // 닫기: '오늘 하루 보지 않기'가 체크돼 있을 때만 오늘 자정까지 숨김 (아니면 다음 페이지에서 다시 뜸)
@@ -61,6 +64,39 @@
     }
     box.classList.remove('on');
     setTimeout(function () { box.remove(); }, 450);
+    if (watcher) { try { watcher.end(true); } catch (e) { /* 무시 */ } watcher = null; }
+  }
+
+  // 데모를 보는 사람 수 — 데모 페이지(live.html)가 공개 브로커에 10초마다 보내는 신호
+  // (locationx/<site>/viewers/<무작위 id>)를 세기만 한다. 홈페이지 방문자는 신호를 보내지 않으며,
+  // 0명이면 아무것도 표시하지 않는다. MQTT 라이브러리는 카드가 뜰 때만 불러온다.
+  var VIEW_TOPIC = 'locationx/lx-abece602/viewers/+', VIEW_TTL = 35000, watcher = null;
+  function watchViewers() {
+    var seen = {}, el = box.querySelector('.lx-viewers');
+    function render() {
+      var now = Date.now(), n = 0;
+      for (var k in seen) if (now - seen[k] < VIEW_TTL) n++;
+      el.textContent = n ? T.viewers(n) : '';
+    }
+    function start() {
+      if (!window.mqtt || !box.isConnected) return;
+      watcher = window.mqtt.connect('wss://broker.hivemq.com:8884/mqtt', {
+        clientId: 'lx-home-' + Math.random().toString(16).slice(2, 10), clean: true, reconnectPeriod: 0, connectTimeout: 10000
+      });
+      watcher.on('connect', function () { watcher.subscribe(VIEW_TOPIC); });
+      watcher.on('message', function (topic, buf) {
+        var id = topic.split('/').pop(), d = {};
+        try { d = JSON.parse(buf.toString()); } catch (e) { return; }
+        if (d.bye) delete seen[id]; else seen[id] = Date.now();
+        render();
+      });
+      var timer = setInterval(function () { if (!watcher) { clearInterval(timer); return; } render(); }, 3000);
+    }
+    if (window.mqtt) return start();
+    var s = document.createElement('script');
+    s.src = 'https://unpkg.com/mqtt@5.10.1/dist/mqtt.min.js';
+    s.onload = start;
+    document.head.appendChild(s);
   }
 
   var box = document.createElement('div');
@@ -70,7 +106,7 @@
   box.innerHTML =
     '<button class="lx-close" aria-label="close">×</button>' +
     '<img src="' + base + 'live-teaser-thumb.jpg" alt="' + T.alt + '">' +
-    '<div class="lx-b"><span class="lx-live"><span class="lx-dot"></span>' + T.live + '</span>' +
+    '<div class="lx-b"><span class="lx-live"><span class="lx-dot"></span>' + T.live + '</span><span class="lx-viewers"></span>' +
     '<h4>' + T.title + '</h4><p>' + T.body + '</p>' +
     '<div class="lx-row"><a class="lx-go" href="' + DEMO_URL + '" target="_blank" rel="noopener">' + T.go + ' →</a></div>' +
     '<div class="lx-foot"><label class="lx-today"><input type="checkbox">' + T.today + '</label>' +
@@ -81,5 +117,6 @@
   setTimeout(function () {
     document.body.appendChild(box);
     requestAnimationFrame(function () { requestAnimationFrame(function () { box.classList.add('on'); }); });
+    watchViewers();
   }, 3000);
 })();
