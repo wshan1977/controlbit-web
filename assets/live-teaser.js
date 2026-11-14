@@ -7,9 +7,11 @@
   var en = (document.documentElement.lang || '').toLowerCase().indexOf('en') === 0;
   var base = (document.currentScript && document.currentScript.src || '').replace(/live-teaser\.js.*$/, '');
 
+  // 주소에 ?live 또는 #live 를 붙이면 닫은 적이 있어도 다시 보여 준다 (확인·시연용)
+  var force = /[?&#]live/.test(location.search + location.hash);
   try {
     var t = Number(localStorage.getItem(KEY) || 0);
-    if (t && Date.now() - t < HIDE_DAYS * 864e5) return;
+    if (!force && t && Date.now() - t < HIDE_DAYS * 864e5) return;
   } catch (e) { /* 저장소를 못 쓰면 매번 보여도 무방 */ }
 
   var css = '' +
