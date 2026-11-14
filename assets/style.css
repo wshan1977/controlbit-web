@@ -215,3 +215,9 @@ footer { padding: 56px 0 40px; border-top: 1px solid var(--line); background: #f
   section { padding: 64px 0; }
   .cta { padding: 48px 24px; }
 }
+
+/* 메뉴 '실시간 데모' — 깜박이는 초록 점 (LocationX 실시간 데모 링크) */
+.nav-links a.nav-live { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: #15803d; }
+.nav-links a.nav-live .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block;
+  animation: lxNavPulse 1.6s infinite; }
+@keyframes lxNavPulse { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,.55); } 70% { box-shadow: 0 0 0 7px rgba(34,197,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } }
